@@ -40,3 +40,25 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Angular specific
+/dist
+/out-tsc
+/node_modules
+/.angular
+/.vscode
+
+# Compiled output
+*.js
+*.map
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDEs and editors
+.idea
+*.sublime-project
+*.sublime-workspace
+
