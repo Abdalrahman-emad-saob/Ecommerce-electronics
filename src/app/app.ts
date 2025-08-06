@@ -6,7 +6,7 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App implements OnInit {
   http = inject(HttpClient);
@@ -14,8 +14,22 @@ export class App implements OnInit {
   description = signal('A simple Angular application');
 
   ngOnInit() {
-    this.http.get('https://my-json-server.typicode.com/typicode/demo/posts').subscribe(data => {
-      console.log(data);
-    });
+    this.http
+      .post(
+        'https://zikzakstore.tujar.xyz/app/tge_cloth_api.php',
+        'func=-1',
+        { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, responseType: 'json' }
+      )
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+        complete: () => {
+          console.log('complete');
+        },
+      });
   }
 }
