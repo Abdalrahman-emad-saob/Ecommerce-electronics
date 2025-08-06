@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -7,6 +8,14 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  protected readonly title = signal('zikzak');
+export class App implements OnInit {
+  http = inject(HttpClient);
+  title = signal('zikzak');
+  description = signal('A simple Angular application');
+
+  ngOnInit() {
+    this.http.get('https://my-json-server.typicode.com/typicode/demo/posts').subscribe(data => {
+      console.log(data);
+    });
+  }
 }
